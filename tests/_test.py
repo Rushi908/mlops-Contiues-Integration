@@ -55,7 +55,7 @@ def test_invalid_input():
 def test_flake8():
     """Check code style using flake8"""
     result = subprocess.run(
-        ["flake8", "--max-line-length=100", "test_code.py"],  # ✅ run only on this file
+        ["flake8", "--max-line-length=100", "_test.py"],  # ✅ run only on this file
         capture_output=True,
         text=True
     )
@@ -67,7 +67,7 @@ def test_flake8():
 def test_pylint():
     """Check code style using pylint"""
     result = subprocess.run(
-        ["pylint", "--disable=R,C", "test_code.py"],  # ✅ lint this file only
+        ["pylint", "--disable=R,C", "_test.py"],  # ✅ lint this file only
         capture_output=True,
         text=True
     )
@@ -79,7 +79,7 @@ def test_pylint():
 def test_black_formatting():
     """Check formatting with Black"""
     result = subprocess.run(
-        ["black", "--check", "test_code.py"],  # ✅ check this file
+        ["black", "--check", "_test.py"],  # ✅ check this file
         capture_output=True,
         text=True
     )
