@@ -1,3 +1,5 @@
 pytest
 streamlit
-
+flake8
+pylint
+black
