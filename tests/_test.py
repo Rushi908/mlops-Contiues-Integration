@@ -1,5 +1,5 @@
 import pytest
-
+import subprocess
 # Functions to test
 def square(n):
     return n ** 2
@@ -54,3 +54,42 @@ def test_invalid_input():
         
     with pytest.raises(TypeError):
         fifth_power("string")
+
+
+
+
+
+# --- Flake8 Test ---
+def test_flake8():
+    """Check code style using flake8"""
+    result = subprocess.run(
+        ["flake8", "--max-line-length=100", "."],
+        capture_output=True,
+        text=True
+    )
+    if result.returncode != 0:
+        pytest.fail(f"Flake8 issues found:\n{result.stdout}")
+
+
+# --- Pylint Test ---
+def test_pylint():
+    """Check code style using pylint"""
+    result = subprocess.run(
+        ["pylint", "--disable=R,C", "."],  # disabling Refactor & Convention to focus on errors/warnings
+        capture_output=True,
+        text=True
+    )
+    if result.returncode != 0:
+        pytest.fail(f"Pylint issues found:\n{result.stdout}")
+
+
+# --- Black Test ---
+def test_black_formatting():
+    """Check formatting with Black"""
+    result = subprocess.run(
+        ["black", "--check", "."],
+        capture_output=True,
+        text=True
+    )
+    if result.returncode != 0:
+        pytest.fail(f"Black formatting issues found:\n{result.stdout}")
